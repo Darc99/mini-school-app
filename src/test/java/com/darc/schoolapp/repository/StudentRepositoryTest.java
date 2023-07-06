@@ -1,5 +1,6 @@
 package com.darc.schoolapp.repository;
 
+import com.darc.schoolapp.entity.Guardian;
 import com.darc.schoolapp.entity.Student;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,9 @@ class StudentRepositoryTest {
                 .emailId("lenny@gmail.com")
                 .firstName("Ugochuwu")
                 .lastName("Anyanwu")
-                .guardianName("Danny")
-                .guardianEmail("danny@yahoo.com")
-                .guardianMobile("283883922922")
+//                .guardianName("Danny")
+//                .guardianEmail("danny@yahoo.com")
+//                .guardianMobile("283883922922")
                 .build();
 
         studentRepository.save(student);
@@ -36,5 +37,22 @@ class StudentRepositoryTest {
     public void showAllStudent() {
         List<Student> studentList = studentRepository.findAll();
         System.out.println("students = " + studentList);
+    }
+
+    @Test
+    public void saveStudentWithGuardianInfo() {
+        Guardian guardian = Guardian.builder()
+                .email("kenny@gmail.com")
+                .mobile("13324244444")
+                .name("Kenny")
+                .build();
+        Student student = Student.builder()
+                .emailId("weird@gmail.com")
+                .firstName("John")
+                .lastName("Quiver")
+                .guardian(guardian)
+                .build();
+
+        studentRepository.save(student);
     }
 }
