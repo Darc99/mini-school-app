@@ -26,4 +26,10 @@ public class Course {
     private Long courseId;
     private String title;
     private Integer credit;
+
+//    to get bi-directional relationship
+    @OneToOne(
+            mappedBy = "course"
+    )
+    private CourseMaterial courseMaterial;
 }
