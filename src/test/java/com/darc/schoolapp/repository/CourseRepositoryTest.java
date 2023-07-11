@@ -1,6 +1,7 @@
 package com.darc.schoolapp.repository;
 
 import com.darc.schoolapp.entity.Course;
+import com.darc.schoolapp.entity.Student;
 import com.darc.schoolapp.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,5 +100,26 @@ class CourseRepositoryTest {
                         firstPageTenRecords
                 ).getContent();
         System.out.println("course = " + courses);
+    }
+
+    @Test
+    void saveCourseWithStudentAndTeacher() {
+        Teacher teacher = Teacher.builder()
+                .firstName("Gana")
+                .lastName("Quasi")
+                .build();
+        Course course = Course.builder()
+                .title("AI")
+                .credit(7)
+                .teacher(teacher)
+                .build();
+        Student student = Student.builder()
+                .firstName("Jerry")
+                .lastName("Morgan")
+                .emailId("jerry@gmail.com")
+                .build();
+        course.addStudents(student);
+
+        courseRepository.save(course);
     }
 }

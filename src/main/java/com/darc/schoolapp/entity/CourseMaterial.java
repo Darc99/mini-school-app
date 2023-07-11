@@ -30,7 +30,7 @@ public class CourseMaterial {
             optional = false
     )
     @JoinColumn(
-            name = "course_Id",
+            name = "course_id",
             referencedColumnName = "courseId"
     )
     private Course course;
